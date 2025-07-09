@@ -53,7 +53,18 @@
         width: 80%;
     }
 }
-
+@media screen and (max-width: 480px) {
+    .header{
+        display: flex;
+        flex-direction: column;
+    }
+    .head1{
+        width: 80%;
+    }
+    .head2{
+        width: 80%;
+    }
+}
 .mainContainerblog{
     width: 90%;
     border: 1px black solid;
