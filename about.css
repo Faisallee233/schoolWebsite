@@ -37,6 +37,19 @@
 .story h2{
     font-family: serif;
 }
+.story h3{
+    font-family: serif;
+}
 .story p{
     font-family: serif;
+}
+.story strong{
+    text-align: center;
+    display: block;
+    background-color: #707000;
+    width: 100px;
+    border-radius: 10px;
+    padding: 10px;
+    color: #fff;
+    margin: 0 auto;
 }
