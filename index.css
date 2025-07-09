@@ -252,6 +252,10 @@ body{
     cursor: pointer;
     font-size: 18px;
 }
+.header-div .header-button a{
+    text-decoration: none;
+    color: #fff;
+}
 .header-div .header-button:hover {      
     background-color: #707000;
 }
@@ -788,6 +792,19 @@ body{
     background-size: cover;
     background-position: center;
     object-fit: cover;
+}
+
+.compass .Apply a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.Activity h3{
+    color: #fff;
+}
+.whychooseUs .Apply a{
+    text-decoration: none;
+    color: #fff;
 }
 
 

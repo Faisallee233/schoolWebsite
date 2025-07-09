@@ -1,7 +1,6 @@
 main{
     width: 80%;
     margin: 8rem auto 2rem auto;
-    background-color: hsl(60, 100%, 95%);
     padding: 10px;  
 }
 
@@ -16,6 +15,7 @@ main{
     flex-direction: column;
     z-index: 5;
     margin: 0 auto;
+    border-radius: 12px;
 }
 .tag1 i{
     font-size: 3rem;
@@ -41,7 +41,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-background-color:#707000;
+background-color:hsl(0, 0%, 95%);
 width: 80%;
 height: 700px;
 margin: auto;
@@ -52,7 +52,7 @@ top: -3rem;
 
 form h1{
     font-size: 4rem;
-    color: hsl(60, 100%, 90%);
+    color: hsl(60, 100%, 20%);
 }
 
 form input[type="text"]{
@@ -70,11 +70,11 @@ form input[type="email"]{
 form input[type="submit"]{
    padding: 10px;
    width: 200px;
-   font-style: italic;
-   font-size: 1rem;
+   color: #fff;
+   font-size: 2rem;
    cursor: pointer;
    border: 1px solid #fff;
-   background-color: hsl(60, 100%, 90%);
+   background-color: hsl(60, 100%, 20%);
 }
 
 
@@ -84,3 +84,22 @@ form textarea{
      padding: 10px;
    font-style: italic;
 }
+
+
+
+    .map-container {
+      width: 90%;
+      height: 450px;
+      border: 5px solid #707000;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      padding: 0;
+      margin: 0 auto;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
