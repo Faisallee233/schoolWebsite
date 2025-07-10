@@ -148,6 +148,7 @@ body{
     }
     .navbar i {
         display: block;
+        margin: 1px 4rem 1px -1rem;
     }
     .navbar i:hover + .menu-box {    
             display: block;
@@ -162,7 +163,11 @@ body{
     .menu-box ul li a {
         text-decoration: none;
         color: #fff;
-        font-weight: bold;}  
+        font-weight: bold;} 
+        
+    .search input{
+       width: 100px;
+    } 
         
     .search input, button{
         margin: 5px;
@@ -193,8 +198,9 @@ body{
     .menu-box ul li a {
         text-decoration: none;
         color: #fff;
-        font-weight: bold;}  
-        
+        font-weight: bold;} 
+
+   
     .search input, button{
         margin: 5px;
     }
@@ -368,7 +374,7 @@ body{
 }
 
 .footer {
-   background-image: linear-gradient(to right,#20202c, black, #20202c, black, #20202c, black, #20202c,black);
+   background-color: #0e0d0d;
     color: #fff;
     text-align: center; 
     position: relative;
@@ -382,9 +388,9 @@ body{
     align-items: center;
 }
 .footer-content .footer-section {
-    margin: 20px;
-    text-align: justify;
-    padding: 10px;
+    margin: 1rem auto 0 auto;
+    text-align: left;
+    /*padding: 10px;*/
     width: 300px;
 }
 .footer-content .footer-section.about h1{
