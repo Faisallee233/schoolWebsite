@@ -28,24 +28,24 @@ db.connect((err) => {
 
 // Handle form submission
 app.post('/contact', (req, res) => {
-  const { names, email, message } = req.body;
-  console.log('Received form data:', { names, email, message });
+    const { names, email, message } = req.body;
+    console.log('Received form data:', { names, email, message });
 
-  if (!names || !email || !message) {
-    console.log('Missing fields!');
-    return res.status(400).json({ message: 'Please fill in all fields.' });
-  }
-
-  const sql = 'INSERT INTO contacts (names, email, message) VALUES (?, ?, ?)';
-  db.query(sql, [names, email, message], (err, result) => {
-    if (err) {
-      console.error('Failed to insert data:', err.message);
-      return res.status(500).json({ message: 'Database error' });
+    if (!names || !email || !message) {
+        console.log('Missing fields!');
+        return res.status(400).json({ message: 'Please fill in all fields.' });
     }
 
-    console.log('Data inserted into DB successfully.');
-    res.json({ message: 'Thank you for contacting us!' });
-  });
+    const sql = 'INSERT INTO contacts (names, email, message) VALUES (?, ?, ?)';
+    db.query(sql, [names, email, message], (err, result) => {
+        if (err) {
+            console.error('Failed to insert data:', err.message);
+            return res.status(500).json({ message: 'Database error' });
+        }
+
+        console.log('Data inserted into DB successfully.');
+        res.json({ message: 'Thank you for contacting us!' });
+    });
 });
 
 app.listen(PORT, () => {

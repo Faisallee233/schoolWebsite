@@ -102,7 +102,7 @@ body{
 .navbar i{
     font-size: 24px;
     color: #070707;
-    margin-right: 40px;
+   /* margin-right: 40px;*/
     cursor: pointer;
     display: none;
 }
@@ -115,7 +115,7 @@ body{
        right:0;
        border: 1px solid;
        background-color: hsl(60, 100%, 10%);
-       z-index: 5;
+       z-index: 18;
 }
 .menu-box ul{
        list-style: none;
