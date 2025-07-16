@@ -148,7 +148,7 @@ body{
     }
     .navbar i {
         display: block;
-        margin: 1px 4rem 1px -1rem;
+        /*margin: 1px 4rem 1px -1rem;*/
     }
     .navbar i:hover + .menu-box {    
             display: block;
