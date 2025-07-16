@@ -1,51 +1,40 @@
-document.addEventListener('DOMContentLoaded', ()=>{
-    
+document.addEventListener("DOMContentLoaded", () => {
+  // Toggle menu
+  const icon = document.getElementById('icon');
+  const menuBox = document.querySelector('.menu-box');
 
-    const icon = document.getElementById('icon');
-    const menuBox = document.querySelector('.menu-box');
+  icon.addEventListener('mouseenter', () => {
+      menuBox.style.display = 'block';
+  });
+  menuBox.addEventListener('mouseleave', () => {
+      menuBox.style.display = 'none';
+  });
 
-    icon.addEventListener('mouseenter', () => {
-        menuBox.style.display = 'block';
-    });
-    menuBox.addEventListener('mouseleave', () => {
-        menuBox.style.display = 'none';
-    });
-    
-const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', async function (e) {
-      e.preventDefault();
+  // Handle contact form submission
+  const form = document.getElementById("contactForm");
 
-      const form = e.target;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-      const data = {
-        names: form.names.value,
-        email: form.email.value,
-        message: form.message.value,
-      };
+    const formData = {
+      names: form.elements["names"].value,
+      email: form.elements["email"].value,
+      message: form.elements["message"].value
+    };
 
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
+    try {
+      const response = await fetch("http://localhost:3000/api/contact", { // <-- Explicit URL
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
 
-        const text = await response.text();
-        try {
-          const result = JSON.parse(text);
-          alert(result.message || 'Form submitted successfully!');
-        } catch (jsonErr) {
-          console.error('Invalid JSON from server:', text);
-          alert('Unexpected response from server.');
-        }
-      } catch (err) {
-        alert('Error submitting form: ' + err.message);
-      }
-    });
-  } else {
-    console.warn('Contact form not found in DOM');
-  }
-})
+      const result = await response.json();
+      alert(result.message);
+      form.reset();
+    } catch (err) {
+      console.error("Error:", err);
+      alert("Submission failed. Try again.");
+    }
+  });
+});
