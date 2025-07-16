@@ -91,13 +91,18 @@
 
 </main>
 
+<div class="map-controls">
+  <button onclick="toggleMap()">Show/Hide Map</button>
+  <button onclick="zoomIn()">Zoom In</button>
+  <button onclick="zoomOut()">Zoom Out</button>
+  <button onclick="showMap('kitintale')">Get Directions to Kitintale</button>
+  <button onclick="showMap('kasokoso')">Get Directions to Kasokoso</button>
+  <button onclick="showMap('maganjo')">Get Directions to Maganjo</button>
+</div>
+
+
  <div class="map-container">
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8124741065456!2d32.582519814754464!3d0.347596999630744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbb1e7a1f6aa5%3A0x6eec801d6f7db293!2sKampala%2C%20Uganda!5e0!3m2!1sen!2sug!4v1720510344700!5m2!1sen!2sug" 
-      allowfullscreen="" 
-      loading="lazy" 
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+    
   </div>
 
     <footer class="footer">
@@ -146,5 +151,6 @@
     </footer>
      <script src="search.js"></script>
     <script src="contact.js"></script>
+    <script src="map.js"></script>
 </body>
 </html>
