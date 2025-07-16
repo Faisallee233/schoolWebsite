@@ -279,6 +279,145 @@
     </footer>
 
 
+<div class="chat-widget">
+  <div class="chat-header">💬 Chat with AI</div>
+  <div class="chat-body" id="chatBody">
+    <div class="ai-message">Hello! How can I help you today?</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<style>
+.chat-widget {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 300px;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  z-index: 1000;
+}
+
+.chat-header {
+  background: #707000;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.chat-body {
+  height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+.chat-input button {
+  background: #707000;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.user-message, .ai-message {
+  padding: 8px 12px;
+  border-radius: 15px;
+  max-width: 80%;
+}
+
+.user-message {
+  background: #f0f0f0;
+  align-self: flex-end;
+}
+
+.ai-message {
+  background: #e6f3ff;
+  align-self: flex-start;
+}
+
+/* Media Query for mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .chat-widget {
+    width: 90%;
+    left: 5%;
+    bottom: 10px;
+  }
+
+  .chat-body {
+    height: 180px;
+  }
+
+  .chat-input input,
+  .chat-input button {
+    font-size: 14px;
+  }
+}
+</style>
+
+
+<script>
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const message = input.value.trim();
+  if (!message) return;
+
+  const chatBody = document.getElementById("chatBody");
+  
+  // Append user message
+  const userMsg = document.createElement("div");
+  userMsg.className = "user-message";
+  userMsg.textContent = message;
+  chatBody.appendChild(userMsg);
+
+  // Simulate AI response (basic logic)
+  setTimeout(() => {
+    const aiMsg = document.createElement("div");
+    aiMsg.className = "ai-message";
+    aiMsg.textContent = generateAIResponse(message);
+    chatBody.appendChild(aiMsg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }, 500);
+
+  input.value = "";
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function generateAIResponse(message) {
+  message = message.toLowerCase();
+  if (message.includes("admission")) return "You can apply online or visit our school campus for admission.";
+  if (message.includes("location")) return "We have campuses in Kitintale, Kasokoso, and Maganjo.";
+  if (message.includes("fees")) return "Our fee structure varies by grade. Please contact the office for details.";
+  return "Thank you for your message. We'll get back to you shortly!";
+}
+</script>
+
+
    <script src="search.js"></script>
     
 <script>
@@ -293,5 +432,6 @@
     });
     
 </script>
+
 </body>
 </html>
