@@ -257,3 +257,21 @@
         width: 95%;
     }
 }
+
+
+.blog-entry {
+  background: #f4f4f4;
+  padding: 10px;
+  margin: 10px 0;
+  border-left: 4px solid #007700;
+}
+
+.blog-entry button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+

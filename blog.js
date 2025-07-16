@@ -1,49 +1,88 @@
-document.addEventListener('DOMContentLoaded', ()=>{
-    let newsParent = document.querySelector('.news');
-    let addbtn = document.querySelector('.addbtn');
-    let delbtn = document.querySelector('.delbtn');
-    let tagblogs = document.querySelector('.tagblogs');
-    let text = document.getElementById('text');
-    let auther = document.getElementById('auther');
-    let date = document.getElementById('date');
-    let description = document.getElementById('description');
+document.addEventListener("DOMContentLoaded", () => {
+  const addBtn = document.querySelector(".addbtn");
+  const delBtn = document.querySelector(".delbtn");
+  const newsContainer = document.querySelector(".news");
+  const tagBlogs = document.querySelector(".tagblogs");
 
-    
-    //add to the blog  box and increament the total count
+  const textInput = document.getElementById("text");
+  const authorInput = document.getElementById("auther");
+  const dateInput = document.getElementById("date");
+  const descInput = document.getElementById("description");
 
-    addbtn.addEventListener('click',()=>{
-    // create a div for the containing data from the inputs
+  // Load blogs from localStorage
+  function loadBlogs() {
+    newsContainer.innerHTML = "";
+    const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+    tagBlogs.textContent = `Total blogs: ${blogs.length}`;
 
-    let boxNews =  document.createElement('div');
-    boxNews.style.border = '1px solid black'
-    boxNews.style.borderRadius = '12px'
-    boxNews.style.background = 'black'
-    boxNews.style.color = 'white'
+    blogs.forEach((blog, index) => {
+      const blogDiv = document.createElement("div");
+      blogDiv.className = "blog-entry";
 
-    let h3 = document.createElement('h3');
-    h3.textContent = text.value;
-    let h4 = document.createElement('h4');
-    h4.textContent = auther.value;
-    let h5 = document.createElement('h5');
-    h5.textContent = date.value;
-    let p = document.createElement('p');
-    p.textContent = description.value;
-     
-    boxNews.appendChild(h3);
-    boxNews.appendChild(h4);
-    boxNews.appendChild(h5);
-    boxNews.appendChild(p);
+      blogDiv.innerHTML = `
+        <h3>${blog.title}</h3>
+        <p><strong>Author:</strong> ${blog.author}</p>
+        <p><strong>Date:</strong> ${blog.date}</p>
+        <p>${blog.description}</p>
+        <button class="delete-single" data-index="${index}">Delete</button>
+      `;
 
-   
+      newsContainer.appendChild(blogDiv);
+    });
 
-    localStorage.setItem('boxNews',boxNews);
-    const stored = localStorage.getItem('boxNews');
-    if(stored){
-      newsParent.appendChild(stored)
+    // Add delete handler for individual delete buttons
+    const deleteButtons = document.querySelectorAll(".delete-single");
+    deleteButtons.forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const index = e.target.getAttribute("data-index");
+        deleteBlog(index);
+      });
+    });
+  }
+
+  // Add blog
+  addBtn.addEventListener("click", () => {
+    const title = textInput.value.trim();
+    const author = authorInput.value.trim();
+    const date = dateInput.value;
+    const description = descInput.value.trim();
+
+    if (!title || !author || !date || !description) {
+      alert("Please fill in all fields.");
+      return;
     }
-    }
-)
-    //delete to the blog  box and decreament the total count
 
-    
-})
+    const newBlog = { title, author, date, description };
+
+    const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+    blogs.push(newBlog);
+    localStorage.setItem("blogs", JSON.stringify(blogs));
+
+    // Clear form
+    textInput.value = "";
+    authorInput.value = "";
+    dateInput.value = "";
+    descInput.value = "";
+
+    loadBlogs();
+  });
+
+  // Delete all blogs
+  delBtn.addEventListener("click", () => {
+    const confirmDel = confirm("Are you sure you want to delete all blogs?");
+    if (confirmDel) {
+      localStorage.removeItem("blogs");
+      loadBlogs();
+    }
+  });
+
+  // Delete individual blog
+  function deleteBlog(index) {
+    const blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+    blogs.splice(index, 1);
+    localStorage.setItem("blogs", JSON.stringify(blogs));
+    loadBlogs();
+  }
+
+  loadBlogs(); // Load on page load
+});
